@@ -127,7 +127,7 @@ element_t *q_remove_head(struct list_head *head, char *sp, size_t bufsize)
     list_del(&e->list);
 
     if (sp) {
-        strncpy(sp, e->value, bufsize - 1);
+        memcpy(sp, e->value, bufsize - 1);
         sp[bufsize - 1] = '\0';
     }
 
@@ -147,7 +147,7 @@ element_t *q_remove_tail(struct list_head *head, char *sp, size_t bufsize)
     list_del(&e->list);
 
     if (sp) {
-        strncpy(sp, e->value, bufsize - 1);
+        memcpy(sp, e->value, bufsize - 1);
         sp[bufsize - 1] = '\0';
     }
 
@@ -245,3 +245,4 @@ void q_reverse(struct list_head *head) {}
  * element, do nothing.
  */
 void q_sort(struct list_head *head) {}
+
