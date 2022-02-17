@@ -63,6 +63,10 @@ bool q_insert_head(struct list_head *head, char *s)
 
     // Copy string to new node.
     e->value = strdup(s);
+    if (e->value == NULL) {
+        free(e);
+        return false;
+    }
 
     // Insert new node at head.
     list_add(&e->list, head);
@@ -89,6 +93,10 @@ bool q_insert_tail(struct list_head *head, char *s)
 
     // Copy string to new node.
     e->value = strdup(s);
+    if (e->value == NULL) {
+        free(e);
+        return false;
+    }
 
     // Insert new node at tail.
     list_add_tail(&e->list, head);
