@@ -52,6 +52,21 @@ void q_free(struct list_head *l)
  */
 bool q_insert_head(struct list_head *head, char *s)
 {
+    // When head is NULL or given string is invalid, it should not be inserted.
+    if (head == NULL || s == NULL)
+        return false;
+
+    // Allocate space for new node.
+    element_t *e = malloc(sizeof(element_t));
+    if (e == NULL)
+        return false;
+
+    // Copy string to new node.
+    e->value = strdup(s);
+
+    // Insert new node at head.
+    list_add(&e->list, head);
+
     return true;
 }
 
@@ -64,6 +79,20 @@ bool q_insert_head(struct list_head *head, char *s)
  */
 bool q_insert_tail(struct list_head *head, char *s)
 {
+    // When head is NULL or given string is invalid, it should not be inserted.
+    if (head == NULL || s == NULL)
+        return false;
+
+    element_t *e = malloc(sizeof(element_t));
+    if (e == NULL)
+        return false;
+
+    // Copy string to new node.
+    e->value = strdup(s);
+
+    // Insert new node at tail.
+    list_add_tail(&e->list, head);
+
     return true;
 }
 
