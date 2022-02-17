@@ -29,6 +29,10 @@ struct list_head *q_new()
 /* Free all storage used by queue */
 void q_free(struct list_head *l)
 {
+    // When l is NULL, it should not be freed.
+    if (l == NULL)
+        return;
+
     struct list_head *pos, *tmp;
 
     list_for_each_safe (pos, tmp, l) {
