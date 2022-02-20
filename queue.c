@@ -63,11 +63,15 @@ bool q_insert_head(struct list_head *head, char *s)
         return false;
 
     // Copy string to new node.
-    e->value = strdup(s);
+    int str_len = strlen(s);
+    e->value = malloc(str_len + 1);
     if (e->value == NULL) {
         free(e);
         return false;
     }
+
+    memcpy(e->value, s, str_len);
+    e->value[str_len] = '\0';
 
     // Insert new node at head.
     list_add(&e->list, head);
@@ -93,11 +97,15 @@ bool q_insert_tail(struct list_head *head, char *s)
         return false;
 
     // Copy string to new node.
-    e->value = strdup(s);
+    int str_len = strlen(s);
+    e->value = malloc(str_len + 1);
     if (e->value == NULL) {
         free(e);
         return false;
     }
+
+    memcpy(e->value, s, str_len);
+    e->value[str_len] = '\0';
 
     // Insert new node at tail.
     list_add_tail(&e->list, head);
